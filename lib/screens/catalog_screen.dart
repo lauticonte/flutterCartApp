@@ -1,7 +1,3 @@
-// Copyright 2019 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 import 'package:flutter/material.dart';
 import 'package:practica4/models/cart_model.dart';
 import 'package:practica4/models/catelog.dart';
@@ -57,61 +53,12 @@ class __AddButtonState extends State<_AddButton> {
 
   @override
   Widget build(BuildContext context) {
-    // The context.select() method will let you listen to changes to
-    // a *part* of a model. You define a function that "selects" (i.e. returns)
-    // the part you're interested in, and the provider package will not rebuild
-    // this widget unless that particular part of the model changes.
-    //
-    // This can lead to significant performance improvements.
-    /*   var isInCart = context.select<CartModel, bool>(
-      // Here, we are only interested whether [item] is inside the cart.
-      (cart) => cart.items.contains(widget.item),
-    );
-
-    var isInCart = context.select<CartProvider, bool>(
-      // Here, we are only interested whether [item] is inside the cart.
-      (cart) => cart.flutterCart.cartItem.contains(widget.item),
-    ); */
-
     _isInCart = _checkItemisInCart();
-
-    /* return Row(
-      children: [
-        _itemCount != 0
-            ? new IconButton(
-                icon: new Icon(Icons.remove),
-                onPressed: () {
-                  setState(() {
-                    _cartProvider.decrementItemFromCartProvider(
-                        _cartItem!.itemCartIndex);
-                    _itemCount--;
-                  });
-                },
-              )
-            : new Container(),
-        new Text(_itemCount.toString()),
-        new IconButton(
-            icon: new Icon(Icons.add),
-            onPressed: () {
-              setState(() {
-                _cartProvider
-                    .incrementItemToCartProvider(_cartItem!.itemCartIndex);
-                _itemCount++;
-              });
-            })
-      ],
-    ); */
 
     return TextButton(
       onPressed: _isInCart != 0
           ? null
           : () {
-              // If the item is not in cart, we let the user add it.
-              // We are using context.read() here because the callback
-              // is executed whenever the user taps the button. In other
-              // words, it is executed outside the build method.
-              /*    var cart = context.read<CartModel>();
-              cart.add(item); */
               _cartProvider.addToCart(widget.item);
               setState(() {});
             },
@@ -138,8 +85,10 @@ class _MyAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      title: Text('Catalog', style: Theme.of(context).textTheme.headline1),
+      title:
+          Text('Colors Catalog', style: Theme.of(context).textTheme.headline1),
       floating: true,
+      automaticallyImplyLeading: false,
       actions: [
         Stack(
           children: [
@@ -183,8 +132,6 @@ class _MyListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var item = context.select<CatalogModel, Item>(
-      // Here, we are only interested in the item at [index]. We don't care
-      // about any other change.
       (catalog) => catalog.getByPosition(index),
     );
     var textTheme = Theme.of(context).textTheme.headline6;

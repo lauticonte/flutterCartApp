@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:practica4/models/cart_model.dart';
 import 'package:practica4/providers/cart_provider.dart';
@@ -47,7 +49,7 @@ class _CartList extends StatelessWidget {
               cartProvider.decrementItemFromCartProvider(index);
               Scaffold.of(context).showSnackBar(
                 const SnackBar(
-                  content: Text('1 item removed to cart'),
+                  content: Text('1 item removed from cart'),
                 ),
               );
             } else {
@@ -87,7 +89,7 @@ class _CartList extends StatelessWidget {
                 '\$${cartProvider.flutterCart.cartItem[index].unitPrice}',
                 style: TextStyle(color: Colors.white)),
             trailing: IconButton(
-              icon: Icon(Icons.add_box_rounded, color: Colors.red),
+              icon: Icon(Icons.add_box_rounded, color: Colors.pink),
               onPressed: () {
                 cartProvider.incrementItemToCartProvider(index);
               },
@@ -121,7 +123,8 @@ class _CartTotal extends StatelessWidget {
                 ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Buying not supported yet.')));
               },
-              style: TextButton.styleFrom(primary: Colors.white),
+              style: TextButton.styleFrom(
+                  primary: Colors.white, backgroundColor: Colors.pink),
               child: const Text('BUY'),
             ),
           ],

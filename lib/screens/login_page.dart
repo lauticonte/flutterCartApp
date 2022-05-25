@@ -34,6 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            // Image.asset('flutter_logo.png'),
             SizedBox(
               height: 60,
               width: 200,
@@ -153,14 +154,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Center(
                     child: RichText(
                   text: TextSpan(
-                    text: "Dont have an account? ",
+                    text: "Dont have an account?  -",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 15,
                     ),
                     children: [
                       TextSpan(
-                          text: " Register here",
+                          text: "  Register here",
                           style: TextStyle(
                               color: Colors.blue, fontWeight: FontWeight.bold),
                           recognizer: new TapGestureRecognizer()
